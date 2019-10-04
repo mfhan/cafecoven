@@ -68,7 +68,7 @@ You are a freelancer, a writer, or just a coffee lover. By choice or necessity, 
 
 ## React Components:  
 
-<img src="https://docs.google.com/drawings/d/e/2PACX-1vQ04yzGGwuLjqxaoj_jRH7PODuxBr_NGYJnDwBuii68jeG78ZUxKm1sLDHw9tWYWrBrHBDai3B7_jmD/pub?w=1440&amp;h=1080"> 
+<img src="https://docs.google.com/drawings/d/e/2PACX-1vQ04yzGGwuLjqxaoj_jRH7PODuxBr_NGYJnDwBuii68jeG78ZUxKm1sLDHw9tWYWrBrHBDai3B7_jmD/pub?w=1440&amp;h=1080">
 
 
 ## Components
@@ -76,7 +76,7 @@ You are a freelancer, a writer, or just a coffee lover. By choice or necessity, 
 
 | Component | Description |
 | --- | :---: |  
-| App | This will make the initial data pull and include React Router|
+| App | will handle user creation and updates; render the Map; act as Router|
 | PersonalDataForm | Will allow user to create/update her account and click on her desired coworking locations |
 | MatchList (FILTER)| Will render possible coworking matches in list form |  
 | Map | Will render a populated map|  
@@ -96,12 +96,12 @@ You are a freelancer, a writer, or just a coffee lover. By choice or necessity, 
 
 ## Additional Libraries
 
- -- JWT for auth
- -- React Hooks
+ -- JWT for auth  
+ -- React Hooks  
  -- Rails
- -- PostgresQL
- -- Calendly API
- --(possibly) Yelp or Foursquare API (I already have api keys)
+ -- PostgresQL  
+ -- Calendly API  
+ --(possibly) Yelp or Foursquare API (I already have api keys)  
 
 ## Code Snippet
 
