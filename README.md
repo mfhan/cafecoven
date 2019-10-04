@@ -9,6 +9,17 @@ You are a freelancer, a writer, or just a coffee lover. By choice or necessity, 
 - github: [https://github.com/mfhan/cafecoven](https://github.com/mfhan/cafecoven)
 - [deployment]()
 
+
+## User Stories  
+
+-- Amy is a freelance book reviewer who does her best work in public places: Whole Foods cafeteria, independent coffee shops, hotel lobbies. But she dreads the moment she'll have to ask a stranger to watch her computer while she's in the bathroom. She would love to have another woman hold down the fort.
+
+-- Liz works remotely and would like to connect with other women in the same industry. She's been going to Meetups but those formats are more conducive to tech talks and company pitches. She would like to network on a more individual basis.
+
+-- Kate is a novelist who likes the idea of writing in a coffee shop -- but more often than not she ends up reading BuzzFeed for 4 hours straight! She needs an accountability partner who will keep her productive.
+
+
+
 ## Wireframes
 
 ###  ERD:  
@@ -23,15 +34,6 @@ You are a freelancer, a writer, or just a coffee lover. By choice or necessity, 
 
 ### Post-Log-In View  
 <img src="https://docs.google.com/drawings/d/e/2PACX-1vS4IUNfx6VdjW4nViof93nUePWAuSLVaJoxAD6gYfjd6uIVc2USXoMqLLFMsE9zZb8CCb1lrr7hrKeD/pub?w=2193&amp;h=1072">
-
-## User Stories  
-
--- Amy is a freelance book reviewer who does her best work in public places: Whole Foods cafeteria, independent coffee shops, hotel lobbies. But she dreads the moment she'll have to ask a stranger to watch her computer while she's in the bathroom. She would love to have another woman help her keep her territory!
-
--- Liz works remotely and would like to connect with other women in the same industry. She's been going to Meetups but those formats are more conducive to tech talks and company pitches. She would like to network on a more individual basis.
-
--- Kate is a novelist who likes the idea of writing in a coffee shop -- but more often than not she ends up reading BuzzFeed for 4 hours straight! She needs an accountability partner who will keep her productive.
-
 
 ## API
 
@@ -54,16 +56,16 @@ You are a freelancer, a writer, or just a coffee lover. By choice or necessity, 
 ### MVP/PostMVP
 
 #### MVP:
--- Allow user to sign up and click on her location
--- Render all users' location data on map
--- Allow user to change her location
--- Allow user to see other users' details on their pop-up infowindow
+-- Allow user to sign up and click on her location  
+-- Render all users' location data on map  
+-- Allow user to change her location  
+-- Allow user to see other users' details on their pop-up infowindow  
 
 #### PostMVP:
 
--- Allow user to select a DAY and TIME SLOT for her availability
--- Allow user to SELECT potential coworking matches via filter  
---  Use YELP or FOURSQUARE APIs to render cafes on map
+-- Allow user to select a DAY and TIME SLOT for her availability  
+-- Allow user to SELECT potential coworking matches via filter   
+--  Use YELP or FOURSQUARE APIs to render cafes on map  
 
 
 ## React Components:  
