@@ -3,7 +3,7 @@
 
 ## an app to help women cowork and network!
 
-You are a freelancer, a writer, or just a coffee lover. By choice or necessity, you frequently do your work in cafes and other public places, but there are drawbacks: you have to constantly keep an eye on your belongings, and sometimes you struggle to find and keep your focus. How about finding an accountability partner? Imagine combining the functionality of Meetup with the ease of Yelp -- sign up, click on your location and availability, and see who else is looking for a coworking partner! 
+You are a freelancer, a writer, or just a coffee lover. By choice or necessity, you frequently do your work in cafes and other public places, but there are drawbacks: you have to constantly keep an eye on your belongings, and sometimes you struggle to find and keep your focus. How about finding an accountability partner? Imagine combining the functionality of Meetup with the ease of Yelp -- sign up, click on your location and availability, and see who else is looking for a coworking partner!
 
 ### Project Links
 - github: [https://github.com/mfhan/cafecoven](https://github.com/mfhan/cafecoven)
@@ -51,13 +51,13 @@ You are a freelancer, a writer, or just a coffee lover. By choice or necessity, 
 ```
 
 
-### MVP/PostMVP - 5min
+### MVP/PostMVP
 
 #### MVP:
 -- Allow user to sign up and click on her location
 -- Render all users' location data on map
 -- Allow user to change her location
---  Allow user to see other users' details on their pop-up infowindow
+-- Allow user to see other users' details on their pop-up infowindow
 
 #### PostMVP:
 
@@ -66,14 +66,13 @@ You are a freelancer, a writer, or just a coffee lover. By choice or necessity, 
 --  Use YELP or FOURSQUARE APIs to render cafes on map
 
 
-## React Component Hierarchy
+## React Components:  
 
+<img src="https://docs.google.com/drawings/d/e/2PACX-1vQ04yzGGwuLjqxaoj_jRH7PODuxBr_NGYJnDwBuii68jeG78ZUxKm1sLDHw9tWYWrBrHBDai3B7_jmD/pub?w=1440&amp;h=1080"> 
 
 
 ## Components
 
-
-Based on the initial logic defined in the previous sections try and breakdown the logic further into stateless/stateful components.
 
 | Component | Description |
 | --- | :---: |  
