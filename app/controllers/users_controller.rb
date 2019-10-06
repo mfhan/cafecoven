@@ -1,11 +1,11 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :update, :destroy]
   before_action :authorize_request, except: :create
+  before_action :set_user, only: [:show, :update, :destroy]
+  # before_action :authorize_request, except: [:create, :login]
 
   # GET /users
   def index
     @users = User.all
-
     render json: @users
   end
 
@@ -19,7 +19,12 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
-      render json: @user, status: :created, location: @user
+      #instead of below,
+      #render json: @user, status: :created, location: @user
+      #we are going to show the user AND THE TOKEN
+      token = encode(user_id: @user.id, email: @user.email)
+      render json: { user: @user, token: token }, status: :ok
+
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -51,6 +56,6 @@ class UsersController < ApplicationController
     # end
 
     def user_params
-    params.require(:user).permit( :username, :email, :password )
+    params.require(:user).permit( :email, :password )
   end
 end
