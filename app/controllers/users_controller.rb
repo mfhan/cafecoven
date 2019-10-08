@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-  before_action :authorize_request, except: :create
   before_action :set_user, only: [:show, :update, :destroy]
-  # before_action :authorize_request, except: [:create, :login]
+  before_action :authorize_request, except: [:create]
 
   # GET /users
   def index
@@ -32,6 +31,8 @@ class UsersController < ApplicationController
 
   # PATCH/PUT /users/1
   def update
+p user_params
+p 'hhhhhhhhhhhhhhhhhhhhhh', @user
     if @user.update(user_params)
       render json: @user
     else
@@ -56,6 +57,6 @@ class UsersController < ApplicationController
     # end
 
     def user_params
-    params.require(:user).permit( :email, :password )
+    params.require(:user).permit(:email, :password, :lat, :long, :phone, :intro, :username)
   end
 end

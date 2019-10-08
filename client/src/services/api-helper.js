@@ -33,19 +33,20 @@ export const verifyUser = async () => {
 }
 
 export const updateUser = async (item, id) => {
-  const resp = await api.put(`/users/${id}`, item, { headers: { Authorization: `Bearer ${localStorage.getItem("jwt")}` } }, item)
+  console.log("the item is", item)
+  const resp = await api.put(`/users/${id}`, {user: item})
   return resp.data
 }
 
 export const showMatches = async () => {
-  const resp = await api.get(`/matches`)
+  const resp = await api.get(`/users`)
   return resp.data;
 }
 
-export const showOneMatch = async (id) => {
-  const resp = await api(`/matches/${id}`)
-  return resp.data;
-}
+// export const showOneMatch = async (id) => {
+//   const resp = await api(`/matches/${id}`)
+//   return resp.data;
+// }
 
 //
 // export const postFood = async (item) => {

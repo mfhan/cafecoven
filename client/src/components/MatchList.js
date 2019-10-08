@@ -1,5 +1,7 @@
 import React from 'react';
 import SingleMatch from './SingleMatch';
+import InfoContent from './InfoContent';
+
 import '../App.css';
 
 const MatchList = (props) => {
@@ -10,7 +12,7 @@ const MatchList = (props) => {
       {props.users.map((user) => {
         console.log(props.users)
         return (
-          <SingleMatch
+          <InfoContent
             key={user.id}
             user={user}
           />

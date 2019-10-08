@@ -25,7 +25,7 @@ const Login = (props) => {
         value={password}
         onChange={props.authHandleChange} />
 
-        <button>Log In</button>
+        <button  >Log In</button>
         <Link to="/register">Register</Link>
       </form>
     </div>
