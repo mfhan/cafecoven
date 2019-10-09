@@ -1,9 +1,10 @@
 import React, { Component }  from 'react';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Route, Redirect, Link, Switch } from 'react-router-dom';
 import { withRouter } from 'react-router';
 import Login from './components/Login'
 import Register from './components/Register'
 import Header from './components/Header'
+import Intro from './components/Intro'
 import NewHeader from './components/NewHeader'
 import About from './components/About'
 import Footer from './components/Footer'
@@ -24,6 +25,7 @@ class App extends Component {
     this.state = {
       currentUser: null,
       users: [],
+      redirect_to_users:false,
       form: {
         username: '',
         phone: '',
@@ -72,7 +74,9 @@ class App extends Component {
   handleLogin = async (e) =>{
     e.preventDefault();
     const currentUser = await loginUser(this.state.authFormData)
+    this.setFormData(currentUser)
     this.setState({ currentUser })
+    this.props.history.push(`/edit/${currentUser.id}`)
   }
 
   handleRegister =  (e) =>{
@@ -83,12 +87,14 @@ class App extends Component {
         lat: position.coords.latitude,
         long: position.coords.longitude
       })
+      this.setFormData(currentUser)
       this.setState({ currentUser })
     })
   }
 
   handleVerify = async() => {
     const currentUser = await verifyUser()
+    this.setFormData(currentUser)
     this.setState({ currentUser })
   }
 
@@ -101,15 +107,20 @@ class App extends Component {
   this.props.history.push('/')
   }
 
-
-
-///////////////////////////////////////////////////////////////////////
 ////////////////////// MAP & USER DATA CHANGES ////////////////////////
-
+  setFormData = (user)=>{
+    this.setState(prevState => ({
+      form: {
+        ...prevState.form,
+        username: user.username,
+        phone:user.phone,
+        intro: user.intro
+       }
+    }))
+  }
 
   handleFormChange = (e)=> {
         let {name, value} = e.target;
-
         this.setState(prevState => ({
           form: {
             ...prevState.form,
@@ -118,19 +129,23 @@ class App extends Component {
         }))
       }
 
-
     handleUserFormSubmit = async (e) => {
       e.preventDefault();
-      const data = this.state.form;
-      const id = this.state.currentUser.id;
-      const user = await updateUser(data, id);
-      console.log(user)
-      // this.setState(prevState =>({
-      //   changingLocation: false
-      // }))
-      const users = await this.getUsers()
-      console.log(users)
-      this.props.history.push('/users')
+      if (this.state.form.lat && this.state.form.long) {
+        const data = this.state.form;
+        const id = this.state.currentUser.id;
+        const updatedUser = await updateUser(data, id);
+        console.log(updatedUser)
+        // this.setState(prevState =>({
+        //   changingLocation: false
+        // }))
+        // const users = await this.getUsers()
+        this.setState(prevState => ({
+          redirect_to_users:true,
+          users: prevState.users.map(user => user.id=== updatedUser.id ? updatedUser : user )
+        }))
+      }
+      // this.props.history.push('/users')
     }
 
 
@@ -167,99 +182,117 @@ class App extends Component {
     }
 
     getUsers = async () => {
-      console.log('getUsers after form click')
+
       const users = await showMatches()
       console.log("users from getUsers", users)
       this.setState({users})
     }
 
-
 ///////////////////////////////////////////////////////////////////
-
   componentDidMount(){
     this.handleVerify()
     this.getUsers()
     this.setPosition()
     }
 
-
   render(){
+    let redirect = this.state.redirect_to_users && <Redirect to={"/users"} />
     //in RETURN <login and <Register,
     //authHandleChange= {this.authHandleChange}, NOT this.state.authHandleChange!!!!
-console.log("from App.js render", this.state.currentUser)
+    console.log("Appjs render", this.state.currentUser)
     return (
       <div className = 'App'>
+        {redirect}
         <div className = 'top-of-site'>
 
-        < Route path = '/login' render={()=>(
-          <Login
-            authFormData= {this.state.authFormData}
-            authHandleChange= {this.authHandleChange}
-            handleLogin ={this.handleLogin}
-          />
-        )} />
+          < Route path = '/login' render={()=>(
+            <>
+              <Login
+                authFormData= {this.state.authFormData}
+                authHandleChange= {this.authHandleChange}
+                handleLogin ={this.handleLogin}
+              />
+              <Intro />
+            </>
 
-        < Route path = '/register' render={()=>(
-          <Register
-            authFormData= {this.state.authFormData}
-            authHandleChange= {this.authHandleChange}
-            handleRegister ={this.handleRegister}
-          />
-        )} />
+          )} />
 
-        <Header
-          currentUser = {this.state.currentUser}
-          handleLoginButton = {this.handleLoginButton}
-          handleLogout = {this.handleLogout}
-        />
+          < Route path = '/register' render={()=>(
+            <>
+            <Register
+              authFormData= {this.state.authFormData}
+              authHandleChange= {this.authHandleChange}
+              handleRegister ={this.handleRegister}
+            />
+            <Intro />
+            </>
+          )} />
+
+          < Route exact path = '/' render={()=>(
+            <Header
+              currentUser = {this.state.currentUser}
+              handleLoginButton = {this.handleLoginButton}
+              handleLogout = {this.handleLogout}
+            />
+          )} />
+
         </div>
 
         <div className="post-login">
           <Switch>
-
             <Route path='/edit/:id' render={(props) => (
               <>
-              <Map
-                users={this.state.users}
-                changingLocation={this.state.changingLocation}
-                mapClick={this.mapClick}
+                <Header
+                  currentUser = {this.state.currentUser}
+                  handleLoginButton = {this.handleLoginButton}
+                  handleLogout = {this.handleLogout}
+                />
+                <Map
+                  users={this.state.users}
+                  changingLocation={this.state.changingLocation}
+                  mapClick={this.mapClick}
+                  handleChangeLocation={this.handleChangeLocation}
+                  currentUser={this.state.currentUser}
+                  form={this.state.form}
+                />
+                <UserProfile
+                  {...props}
+                  currentUser = {this.state.currentUser}
+                  form={this.state.form}
+                  handleChange={this.handleFormChange}
+                  handleChangeLocation={this.handleChangeLocation}
+                  handleSubmit={this.handleUserFormSubmit} />
+                </>)}
               />
-              <UserProfile
-                {...props}
+
+            <Route path='/users' render={(props) => (
+              <>
+              <Header
                 currentUser = {this.state.currentUser}
-                form={this.state.form}
-                handleChange={this.handleFormChange}
-                handleChangeLocation={this.handleChangeLocation}
-                handleSubmit={this.handleUserFormSubmit} />
-              </>)}
-            />
-
-
-              <Route path='/users' render={(props) => (
-                <>
-                 <Map
-                   users={this.state.users}
-                   changingLocation={this.state.changingLocation}
-                   mapClick={this.mapClick}
-                 />
-                </> )}
+                handleLoginButton = {this.handleLoginButton}
+                handleLogout = {this.handleLogout}
               />
+               <Map
+                 users={this.state.users}
+                 changingLocation={this.state.changingLocation}
+                 mapClick={this.mapClick}
+                 currentUser={this.state.currentUser}
+                 form={this.state.form}
+               />
+            </> )}
+          />
 
-            <Route path='/about' component={About} />
-            </Switch>
-
-         </div>
-         <Footer />
-
+          <Route path='/about' component={About} />
+        </Switch>
       </div>
+        <Footer />
 
+    </div>
     );
   }
 }
 
 export default withRouter(App);
-
-
 
 // getUsers = async () => {
 //   const users = await showMatches()

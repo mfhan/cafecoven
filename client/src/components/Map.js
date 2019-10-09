@@ -4,7 +4,7 @@ import MapGL, {Marker, Popup, NavigationControl } from 'react-map-gl';
 import InfoContent from './InfoContent'
 import Pin from './Pin'
 import ControlPanel from './ControlPanel';
-import './Map.css';
+import '../App.css';
 //import 'mapbox-gl/dist/mapbox-gl.css';
 const TOKEN = 'pk.eyJ1IjoicGFyaXNueSIsImEiOiJjazBsY2o2NWMwYzB4M2RwbXA2djMxajhvIn0.aZA45UapwyeCfUBOA-N9Vw';
 
@@ -22,10 +22,10 @@ class Map extends Component {
 
   this.state = {
     users: this.props.users,
+    currentUser: this.props.currentUser,
     viewport: {
       latitude: 40.753345,
       longitude: -73.9841719,
-      showPopup: true,
       zoom:14,
       minZoom: 10,
       maxZoom: 20,
@@ -40,15 +40,6 @@ class Map extends Component {
 updateViewport=(viewport)=>{
   this.setState({viewport})
 }
-//
-
-// _renderUserMarker = (user, index) => {
-//   return (
-//     <Marker key={`${user.username}`} longitude={user.long} latitude={user.lat}>
-//       <UserPin size={20} onClick={() => this.setState({popupInfo: users})} />
-//     </Marker>
-//   );
-// };
 
 _renderPopup() {
     const {popupInfo} = this.state;
@@ -69,9 +60,55 @@ _renderPopup() {
     );
   }
 
+  // _renderUserMarker = (user, index) => {
+  //   return (
+  //     <Marker key={`${user.username}`} longitude={user.long} latitude={user.lat}>
+  //       <UserPin size={20} onClick={() => this.setState({popupInfo: users})} />
+  //     </Marker>
+  //   );
+  // };
+
+  mapMarkers = () => {
+    const userMarkers = this.props.users.filter(user=> user.id !== this.props.currentUser.id && user.lat && user.long).map(user=> (
+       <Marker
+         key = {user.email}
+         latitude = {user.lat}
+         longitude = {user.long}
+         offsetLeft={-20}
+         offsetTop={-10}
+        >
+        <div> {user.username} </div>
+        <Pin fill='#ffbf00'
+        onClick={() =>this.setState({popupInfo:user})} />
+      </Marker>
+
+    ))
+    const currentUserMarker = this.props.users.filter(user=> user.id === this.props.currentUser.id).map(user=> (
+       <Marker
+         key = {user.email}
+         latitude = {this.props.form.lat || user.lat}
+         longitude = {this.props.form.long || user.long}
+         offsetLeft={-20}
+         offsetTop={-10}
+        >
+        <div> {user.username} </div>
+        <Pin fill='#d00'
+        onClick={() =>this.setState({popupInfo:user})} />
+      </Marker>
+
+    ))
+    return [userMarkers, currentUserMarker]
+  }
+
   render() {
-    console.log("props users from Map.js render", this.props.users)
+
     const {viewport} = this.state;
+    const users = this.props.users;
+    const currentUser= this.props.currentUser;
+
+    console.log("props users from Map.js", this.props.users)
+    console.log("currentUser from Map.js", this.props.currentUser)
+
     return (
       <div >
           <MapGL
@@ -84,29 +121,18 @@ _renderPopup() {
             onViewportChange={viewport => this.setState({viewport})}
             >
 
-            {this.props.users.map(user=> (
-               <Marker
-                 key = {user.email}
-                 latitude = {user.lat}
-                 longitude = {user.long}
-                 offsetLeft={-20}
-                 offsetTop={-10}
-                >
-                <div> {user.username} </div>
-                <Pin size={24} onClick={() =>this.setState({popupInfo:user})} />
-              </Marker>
+            {this.props.currentUser && this.mapMarkers()}
 
-            ))}
+            {this._renderPopup()}
 
-          {this._renderPopup()}
-
-        <div style={{position: 'absolute', right: 0}}>
-          <NavigationControl />
+        <div style={{position: 'absolute',right:0, bottom: 20, padding: "10px"}}>
+          <NavigationControl
+          />
         </div>
 
 
         <ControlPanel
-          containerComponent={this.props.containerComponent} />
+          button={this.props.containerComponent} />
 
         </MapGL >
       </div>
@@ -154,3 +180,46 @@ export default Map;
 //   onViewportChange = {(viewport) => this.updateViewport(viewport)}
 //   onClick = {this.props.mapClick}
 // >
+
+
+           //
+           //  <Marker
+           //    key = {this.props.currentUser.id}
+           //    latitude = {this.props.currentUser.lat}
+           //    longitude = {this.props.currentUser.long}
+           //    offsetLeft={-20}
+           //    offsetTop={-10}
+           //   >
+           //   <div> {this.props.currentUser.username} </div>
+           //   <Pin size={24} fill='#d00' onClick={() =>this.setState({popupInfo:this.props.currentUser})} />
+           // </Marker>
+
+           //
+           // {this.props.users.filter(user=> user.id !== this.props.currentUser.id).map(user=> (
+           //    <Marker
+           //      key = {user.email}
+           //      latitude = {user.lat}
+           //      longitude = {user.long}
+           //      offsetLeft={-20}
+           //      offsetTop={-10}
+           //     >
+           //     <div> {user.username} </div>
+           //     <Pin fill='#ffbf00' size={24} onClick={() =>this.setState({popupInfo:user})} />
+           //   </Marker>
+           //
+           // ))}
+           //
+           // {this.props.users.filter(user=> user.id === this.props.currentUser.id).map(user=> (
+           //    <Marker
+           //      key = {user.email}
+           //      latitude = {user.lat}
+           //      longitude = {user.long}
+           //      offsetLeft={-20}
+           //      offsetTop={-10}
+           //     >
+           //     <div> {user.username} </div>
+           //     <Pin fill='#d00' size={24}
+           //     onClick={() =>this.setState({popupInfo:user})} />
+           //   </Marker>
+           //
+           // ))}

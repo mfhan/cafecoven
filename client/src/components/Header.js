@@ -19,19 +19,19 @@ const Header =(props)=>{
   //user.changedData: true
 
     return (
-      <header >
+      <header>
         {props.currentUser
           ?
           <div>
             <Redirect to = {`/edit/${props.currentUser.id}`} />
             <h3>Hi {props.currentUser && props.currentUser.email}
-            <button  className="content-button"  onClick={props.handleLogout}>Log Out</button>
-            <Link className="content-button"   to={`/edit/${props.currentUser.id}`}> Change Profile</Link>
+            <button  className="nav-button"  onClick={props.handleLogout}>Log Out</button>
+            <Link className="nav-button"   to={`/edit/${props.currentUser.id}`}> Change Profile</Link>
             </h3>
           </div>
           :
           <>
-          <button className ="login-button"  onClick={props.handleLoginButton}>Users: Register or Log In</button>
+          <button className ="nav-button"  onClick={props.handleLoginButton}>Users: Register or Log In</button>
           <Link to = "/">
             <h1>Welcome to WorkHaven</h1></Link>
             <h2>Connect and Cowork with Other Women</h2>

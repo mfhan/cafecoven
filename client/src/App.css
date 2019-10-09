@@ -1,6 +1,7 @@
 
 .App {
-  background-color: rgb(255,244,146);
+  background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.4) 0%, rgba(235, 237, 238, 0.4) 100%), url("./assets/wood_def.jpg");
+  /* background-color: rgb(255,244,146); */
   border: 1px solid grey;
   margin: 5px;
   display: flex;
@@ -8,6 +9,7 @@
   min-height: 100vh;
   width: 100%;
   text-decoration: none;
+  color: black
 }
 
 .App > * {
@@ -18,6 +20,14 @@
   /* background-color: rgb(255,244,146); */
 }
 
+
+svg {
+  height:30px;
+  width: 30px;
+  padding: 5px;
+  text-align: center;
+}
+
 header {
   background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.4) 0%, rgba(235, 237, 238, 0.4) 100%), url("./assets/wood_def.jpg");
   text-decoration: none;
@@ -25,15 +35,43 @@ header {
 }
 
 .intro{
-background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.8) 0%, rgba(235, 237, 238, 0.8) 100%), url('./assets/cafe.jpg');
+background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.8) 0%, rgba(235, 237, 238, 0.8) 100%), url('./assets/coffee-red.jpg');
+flex-direction: row;
+flex-wrap: wrap;
+width: 100%;
 padding: 5px 5px 5px 5px;
 /* background-color: lightpink; */
 background-position: center;
 background-repeat: no-repeat;
 background-size: cover;
+font-size: 20px;
 /* opacity: 0.9; */
 }
 
+.row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  flex: 1;
+  min-height: 150px;
+  padding: 5px 5px 5px 5px;
+}
+
+Icon {
+  text-align: center;
+}
+
+Icon  .coffee{
+  margin-left: 10px;
+  margin-right: 10px;
+}
 
 .post-login {
   /* flex-grow: 1; */
@@ -45,20 +83,44 @@ background-size: cover;
   justify-content: center;
 }
 
-.post-login  h2{
-  align-items: center;
+.profile {
+  text-align: center;
+  margin: 2px  2px 2px 2px;
+  padding: 5px 5px 5px 5px;
+}
+
+
+.profile button {
+  text-align: center;
+  margin:  5px 5px 5px 5px;
+}
+
+
+.profile label {
+  text-align: center;
+  margin: 5px 5px 5px 5px;
+}
+
+.profile input {
+  text-align: center;
+  margin: 5px 5px 5px 5px;
+}
+
+.profile h2{
+  text-align: center;
   margin: 2px  2px 2px 2px;
   padding: 2px  2px 2px 2px;
 }
 
 
-.home-profile h3{
+.profile h3{
   margin: 0px;
   padding: 2px  2px 2px 2px;
   text-transform: uppercase;
 }
-.home-profile p{
-  font-size: 16px;
+
+.profile p{
+  font-size: 20px;
   margin: 0px;
   padding: 2px  2px 2px 2px;
 }
@@ -118,6 +180,7 @@ background-size: cover;
 .mapboxgl-marker {
   color: black;
 }
+
 .mapboxgl-popup-content {
   position: relative;
   background: #fff;
@@ -127,9 +190,9 @@ background-size: cover;
   pointer-events: auto;
 }
 
-svg{
+/* svg{
   opacity: 0.8;
-}
+} */
 
 .info-window {
   width: 300px;
@@ -146,18 +209,82 @@ svg{
 
 
 /* Global buttons */
-.content-button {
+.nav-button {
   align-self: center;
   display: column;
-	padding: .2em .4em;
+	padding: 4px, 4px,4px,4px;
+  text-decoration: none;
+  margin: 2px, 2px,2px,2px;
+	border: 3px solid black;
+  border-radius: 8px;
+  background-color: lightgrey;
+  color: black;
+	/*border-radius: 10px;*/
+	font-weight: 600;
+  font-family: arial;
+  font-size: 18px;
+}
+
+Link, a {
+  font-size: 18px;
+  padding: 4px, 4px,4px,4px;
+}
+
+button {
+  font-size: 18px;
+  padding: 4px, 4px,4px,4px;
+}
+
+.mapchange-button{
+  align-self: flex-end;
+  padding: 10px, 10px;
   text-decoration: none;
   margin: .2em .2em;
 	border: 3px solid black;
-  background-color: white;
-  color: red;
-	/*border-radius: 10px;*/
+  border-radius: 8px;
+  background-color: lightgrey;
+  color: black;
+	font-weight: 600;
+  font-size: 18px;
+}
+
+.control-panel{
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 320px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  /* padding: 0px, 5px, 0px, 5px; */
+  text-decoration: none;
+  /* margin: 0px, 5px, 0px, 5px; */
+	border: 2px solid black;
+  border-radius: 8px;
+  background-color: lightgrey;
+  font-size: 16px;
+  color: black;
 	font-weight: 600;
 }
+
+p .control-panel{
+  padding: 0px, 5px, 0px, 5px;
+}
+/*
+.control-panel {
+  position: absolute;
+  top: 0;
+  right: 0;
+  max-width: 320px;
+  background: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  padding: 5px 10px;
+  margin: 5px;
+  font-size: 13px;
+  line-height: 2;
+  color: #6b6b76;
+  text-transform: uppercase;
+  outline: none;
+} */
+
 
 /* a.content-button {
 	color: red;
@@ -183,16 +310,16 @@ body {
 }
 
 footer{
+  background-color: linear-gradient(120deg, rgba(253, 251, 251, 0.8) 0%, rgba(235, 237, 238, 0.8) 100%), lightgrey;
+  padding: 5px 5px 5px 5px;
   margin-top: 5px;
   display: inline-flex;
   justify-content: space-between;
-  background-color: lightgrey;
+  /* background-color: lightgrey; */
   padding: 5px;
   color: black;
 }
 
-body,
-button,
 input,
 select,
 textarea {

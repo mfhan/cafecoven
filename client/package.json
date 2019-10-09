@@ -30,5 +30,16 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@iconify/icons-el": "^1.0.3",
+    "@iconify/icons-emojione-monotone": "^1.0.3",
+    "@iconify/icons-fa-solid": "^1.0.5",
+    "@iconify/icons-flat-ui": "^1.0.3",
+    "@iconify/icons-foundation": "^1.0.3",
+    "@iconify/icons-ps": "^1.0.1",
+    "@iconify/icons-vaadin": "^1.0.3",
+    "@iconify/icons-whh": "^1.0.1",
+    "@iconify/react": "^1.1.1"
   }
 }

@@ -32,9 +32,9 @@ export const verifyUser = async () => {
   return false
 }
 
-export const updateUser = async (item, id) => {
-  console.log("the item is", item)
-  const resp = await api.put(`/users/${id}`, {user: item})
+export const updateUser = async (data, id) => {
+  console.log("the data is", data)
+  const resp = await api.put(`/users/${id}`, {user: data})
   return resp.data
 }
 

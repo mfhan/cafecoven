@@ -17,50 +17,39 @@ const UserProfile = (props) => {
           case 'createdAt':
           case 'updatedAt':
             return <></>
-
-          case 'prevlat':
-          return <>
-            <label htmlFor={key}>{key}:</label>
-            <input
-              type="text"
-              step="any"
-              name={key}
-              value={ props.form.prevlat ?  props.form.prevlat : props.form.lat }
-            />
-            </>
-            case 'prevlong':
+          case 'username':
             return <>
               <label htmlFor={key}>{key}:</label>
               <input
+                required
                 type="text"
-                step="any"
                 name={key}
-                value={props.form.prevlong ?  props.form.prevlong : props.form.long}
+                value={props.form[key] }
+                onChange={props.handleChange}
               />
             </>
-
           case 'lat':
           return <>
             <label htmlFor={key}>{key}:</label>
             <input
-              type="text"
+              disabled
+              type="number"
               step="any"
               name={key}
-              value={ props.form.lat ?  props.form.lat : props.form.prevlat }
-              placeholder = {props.form.prevlat}
-              onChange={props.handleChangeLocation}
+              value={props.form[key]}
+              onChange={props.handleChange}
             />
             </>
             case 'long':
             return <>
               <label htmlFor={key}>{key}:</label>
               <input
-                type="text"
+                disabled
+                type="number"
                 step="any"
                 name={key}
-                value={props.form.long ?  props.form.long : props.form.prevlong}
-                placeholder = {props.form.prevlong}
-                onChange={props.handleChangeLocation}
+                value={props.form[key]}
+                onChange={props.handleChange}
               />
             </>
         default:
@@ -79,12 +68,15 @@ const UserProfile = (props) => {
   if (props.currentUser) {
     return (
       <>
-        <h2 className = "main-content">Create or Update Your Data</h2>
-        <button className="content-button"  onClick={props.handleChangeLocation}>CHANGE YOUR LOCATION ON THE MAP</button>
+      <button className="mapchange-button"  onClick={props.handleChangeLocation}>CHANGE YOUR LOCATION</button>
 
-         {userForm()}
+        <h2 className = "profile">Important: Always Check Your Data</h2>
+        <h3 className = "profile">Help WorkHaven help you! The more details you add on your profile <br/> -> the better our database <br /> ->the higher your odds of finding a co-worker near you!<br/>
+        Make sure your LOCATION is accurate. </h3>
 
-        <button  className="content-button"  onClick={props.handleSubmit} >Submit</button>
+        <div className = "profile"> {userForm()}</div>
+
+        <button  className="profile"  onClick={props.handleSubmit} >Submit</button>
 
       </>
     )
@@ -142,3 +134,24 @@ export default UserProfile;
 //     value={props.form[key] }
 //     onChange={props.handleChange}
 //   />
+//
+// case 'prevlat':
+// return <>
+//   <label htmlFor={key}>{key}:</label>
+//   <input
+//     type="text"
+//     step="any"
+//     name={key}
+//     value={ props.form.prevlat ?  props.form.prevlat : props.form.lat }
+//   />
+//   </>
+//   case 'prevlong':
+//   return <>
+//     <label htmlFor={key}>{key}:</label>
+//     <input
+//       type="text"
+//       step="any"
+//       name={key}
+//       value={props.form.prevlong ?  props.form.prevlong : props.form.long}
+//     />
+//   </>
