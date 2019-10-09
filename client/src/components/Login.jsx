@@ -4,6 +4,7 @@ import '../App.css';
 
 
 const Login = (props) => {
+    console.log('this is props.history from login js', props)
 
     const {email, password} = props.authFormData;
 

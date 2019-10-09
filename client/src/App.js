@@ -75,10 +75,16 @@ class App extends Component {
     this.setState({ currentUser })
   }
 
-  handleRegister =  async (e) =>{
+  handleRegister =  (e) =>{
     e.preventDefault();
-    const currentUser = await registerUser(this.state.authFormData)
-    this.setState({ currentUser })
+    navigator.geolocation.getCurrentPosition( async (position)=> {
+      const currentUser = await registerUser({
+        ...this.state.authFormData,
+        lat: position.coords.latitude,
+        long: position.coords.longitude
+      })
+      this.setState({ currentUser })
+    })
   }
 
   handleVerify = async() => {
@@ -92,13 +98,16 @@ class App extends Component {
       currentUser: null
     })
     localStorage.removeItem("authToken")
+  this.props.history.push('/')
   }
+
+
 
 ///////////////////////////////////////////////////////////////////////
 ////////////////////// MAP & USER DATA CHANGES ////////////////////////
 
 
-  formHandleChange = (e)=> {
+  handleFormChange = (e)=> {
         let {name, value} = e.target;
 
         this.setState(prevState => ({
@@ -115,8 +124,12 @@ class App extends Component {
       const data = this.state.form;
       const id = this.state.currentUser.id;
       const user = await updateUser(data, id);
-      this.state.changedData= true
       console.log(user)
+      // this.setState(prevState =>({
+      //   changingLocation: false
+      // }))
+      const users = await this.getUsers()
+      console.log(users)
       this.props.history.push('/users')
     }
 
@@ -128,25 +141,37 @@ class App extends Component {
       }))
     }
 
+    setPosition=()=>{
+      const watchId = navigator.geolocation.getCurrentPosition((position)=> {
+        console.log(position.coords)
+        this.setState(prevState => ({
+            form: {
+              ...prevState.form,
+              lat: position.coords.latitude,
+              long: position.coords.longitude
+            }
+          }))
+      })
+      // console.log(watchId)
+    }
+
     mapClick =(map, e)=> {
-      if (!this.state.changingLocation) {
-        return;
-      }
         console.log('this is mapClick', map)
         this.setState(prevState => ({
             form: {
               ...prevState.form,
               lat: map.lngLat[1],
               long: map.lngLat[0],
-            },
-            changingLocation: false
+            }
           }))
     }
 
-      getUsers = async () => {
-        const users = await showMatches()
-        this.setState({ users })
-      }
+    getUsers = async () => {
+      console.log('getUsers after form click')
+      const users = await showMatches()
+      console.log("users from getUsers", users)
+      this.setState({users})
+    }
 
 
 ///////////////////////////////////////////////////////////////////
@@ -154,16 +179,17 @@ class App extends Component {
   componentDidMount(){
     this.handleVerify()
     this.getUsers()
+    this.setPosition()
     }
 
 
   render(){
     //in RETURN <login and <Register,
     //authHandleChange= {this.authHandleChange}, NOT this.state.authHandleChange!!!!
-console.log("from render first line", this.state.currentUser)
+console.log("from App.js render", this.state.currentUser)
     return (
       <div className = 'App'>
-
+        <div className = 'top-of-site'>
 
         < Route path = '/login' render={()=>(
           <Login
@@ -183,23 +209,13 @@ console.log("from render first line", this.state.currentUser)
 
         <Header
           currentUser = {this.state.currentUser}
-          changedData = {this.state.changedData}
           handleLoginButton = {this.handleLoginButton}
           handleLogout = {this.handleLogout}
         />
+        </div>
 
         <div className="post-login">
           <Switch>
-
-            <Route path='/users' render={(props) => (
-              <>
-               <Map
-                 users={this.state.users}
-                 changingLocation={this.state.changingLocation}
-                 mapClick={this.mapClick}
-               />
-              </> )}
-            />
 
             <Route path='/edit/:id' render={(props) => (
               <>
@@ -212,12 +228,22 @@ console.log("from render first line", this.state.currentUser)
                 {...props}
                 currentUser = {this.state.currentUser}
                 form={this.state.form}
-                handleChange={this.formHandleChange}
+                handleChange={this.handleFormChange}
                 handleChangeLocation={this.handleChangeLocation}
                 handleSubmit={this.handleUserFormSubmit} />
               </>)}
             />
 
+
+              <Route path='/users' render={(props) => (
+                <>
+                 <Map
+                   users={this.state.users}
+                   changingLocation={this.state.changingLocation}
+                   mapClick={this.mapClick}
+                 />
+                </> )}
+              />
 
             <Route path='/about' component={About} />
             </Switch>
@@ -233,6 +259,13 @@ console.log("from render first line", this.state.currentUser)
 
 export default withRouter(App);
 
+
+
+// getUsers = async () => {
+//   const users = await showMatches()
+//   console.log("users from getUsers", users)
+//   this.setState({ users })
+// }
 
 // <Route exact path='/' render={(props) => (
 //   <>
@@ -259,3 +292,35 @@ export default withRouter(App);
 //         }
 //       }))
 //     }
+
+
+  //changedData = {this.state.changedData}
+
+
+      //
+      // handleUserFormSubmit = async (e) => {
+      //   e.preventDefault();
+      //   const data = this.state.form;
+      //   const id = this.state.currentUser.id;
+      //   const user = await updateUser(data, id);
+      //   this.state.changedData= true
+      //   console.log(user)
+      //   this.props.history.push('/users')
+      // }
+
+          //
+          //
+          // mapClick =(map, e)=> {
+          //   if (!this.state.changingLocation) {
+          //     return;
+          //   }
+          //     console.log('this is mapClick', map)
+          //     this.setState(prevState => ({
+          //         form: {
+          //           ...prevState.form,
+          //           lat: map.lngLat[1],
+          //           long: map.lngLat[0],
+          //         },
+          //         changingLocation: false
+          //       }))
+          // }

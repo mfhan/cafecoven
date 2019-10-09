@@ -1,26 +1,44 @@
 
 .App {
+  background-color: rgb(255,244,146);
   border: 1px solid grey;
   margin: 5px;
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   width: 100%;
+  text-decoration: none;
 }
 
 .App > * {
   padding: 20px;
 }
+
+.top-of-site {
+  /* background-color: rgb(255,244,146); */
+}
+
+header {
+  background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.4) 0%, rgba(235, 237, 238, 0.4) 100%), url("./assets/wood_def.jpg");
+  text-decoration: none;
+  text-align: center;
+}
+
 .intro{
-
-
-
+background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.8) 0%, rgba(235, 237, 238, 0.8) 100%), url('./assets/cafe.jpg');
+padding: 5px 5px 5px 5px;
+/* background-color: lightpink; */
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+/* opacity: 0.9; */
 }
 
 
 .post-login {
   /* flex-grow: 1; */
-  background-color: #70bf40;
+  background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.4) 0%, rgba(235, 237, 238, 0.4) 100%), url("./assets/wood_def.jpg");
+  /* background-color: #70bf40; */
   padding: 2px  2px 0px 2px;
   display: flex;
   flex-direction: column;
@@ -56,7 +74,8 @@
 }
 
 .title h1{
-  margin: 2px  2px 2px 2px  ;
+  margin: 2px  2px 2px 2px ;
+  text-decoration: none;
 }
 
 .title h2{
@@ -65,7 +84,7 @@
 
 .title h3{
   margin: 2px  2px 2px 2px  ;
-  padding: 2px  2px 2px 2px  ;
+  /* padding: 2px  2px 2px 2px  ; */
 }
 
 .title  .login-button {

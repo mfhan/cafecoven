@@ -20,29 +20,25 @@ const Header =(props)=>{
 
     return (
       <header >
-      {props.currentUser
-        ?
-        <div>
-          <Redirect to = {`/edit/${props.currentUser.id}`} />
-          <h3>Hi {props.currentUser && props.currentUser.email}
-          <button  className="content-button"  onClick={props.handleLogout}>Log Out</button>
-          <Link className="content-button"   to={`/edit/${props.currentUser.id}`}> Change Profile</Link>
-          </h3>
-          <hr />
-        </div>
-        :
-        <>
-        <button className ="login-button"  onClick={props.handleLoginButton}>Users: Register or Log In</button>
-        <Redirect to = "/"  />
-
-        <h1>Welcome to WorkHaven</h1>
-        <h2>Connect and Cowork with Other Women</h2>
-
-        <Intro />
-        </>
-      }
+        {props.currentUser
+          ?
+          <div>
+            <Redirect to = {`/edit/${props.currentUser.id}`} />
+            <h3>Hi {props.currentUser && props.currentUser.email}
+            <button  className="content-button"  onClick={props.handleLogout}>Log Out</button>
+            <Link className="content-button"   to={`/edit/${props.currentUser.id}`}> Change Profile</Link>
+            </h3>
+          </div>
+          :
+          <>
+          <button className ="login-button"  onClick={props.handleLoginButton}>Users: Register or Log In</button>
+          <Link to = "/">
+            <h1>Welcome to WorkHaven</h1></Link>
+            <h2>Connect and Cowork with Other Women</h2>
+            <Intro />
+          </>
+        }
       </header>
-
     );
 }
 
