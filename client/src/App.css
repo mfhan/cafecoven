@@ -24,8 +24,12 @@
 svg {
   height:30px;
   width: 30px;
-  padding: 5px;
-  text-align: center;
+  padding-bottom: 20px;
+  margin: 0 auto;
+  /* text-align: center;
+  justify-content: center;
+  justify-content: space-around;
+  justify-content: space-between; */
 }
 
 header {
@@ -64,8 +68,15 @@ font-size: 20px;
   padding: 5px 5px 5px 5px;
 }
 
+.how{
+  margin: 0 auto;
+}
+
 Icon {
-  text-align: center;
+  margin: 0 auto;
+  /* text-align: center;
+  justify-content: space-around;
+  justify-content: space-between; */
 }
 
 Icon  .coffee{
