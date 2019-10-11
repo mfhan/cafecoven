@@ -78,6 +78,7 @@ class App extends Component {
   }
 
   handleRegister =  (e) =>{
+    console.log("REGISTER")
     e.preventDefault();
     navigator.geolocation.getCurrentPosition( async (position)=> {
       const currentUser = await registerUser({
@@ -108,7 +109,6 @@ class App extends Component {
 
 ////////////////////// SET USER DATA FORM ////////////////////////
 
-
     setPosition=()=>{
       const watchId = navigator.geolocation.getCurrentPosition((position)=> {
         console.log(position.coords)
@@ -120,9 +120,7 @@ class App extends Component {
             }
           }))
       })
-      // console.log(watchId)
     }
-
 
 
   setFormData = (user)=>{
@@ -139,7 +137,6 @@ class App extends Component {
     }))
   }
 
-
 ////////////////////// MAP DATA CHANGES ////////////////////////
 
     handleChangeLocation =(e)=>{
@@ -148,7 +145,6 @@ class App extends Component {
         changingLocation: true
       }))
     }
-
 
     mapClick =(map, e)=> {
         console.log('this is mapClick', map)
