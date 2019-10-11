@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
 import MapGL, {Marker, Popup, NavigationControl } from 'react-map-gl';
-import InfoContent from './InfoContent'
+//import InfoContent from './InfoContent'
+import InfoContent from './Info'
 import Pin from './Pin'
 import UserPin from './UserPin'
 import ControlPanel from './ControlPanel';
@@ -27,7 +28,7 @@ class Map extends Component {
     viewport: {
       latitude: this.props.currentUser ? this.props.currentUser.lat : 40.753345,
       longitude: this.props.currentUser ? this.props.currentUser.long : -73.9841719,
-      zoom:14,
+      zoom:12,
       minZoom: 10,
       maxZoom: 20,
       bearing: 0,
@@ -36,6 +37,7 @@ class Map extends Component {
     popupInfo: null
   };
 }
+
 
 componentDidUpdate(prevProps) {
   if (prevProps.currentUser !== this.props.currentUser ) {
@@ -67,11 +69,12 @@ _renderPopup() {
     return (
       popupInfo && (
         <Popup
-          tipSize={5}
+          tipSize={10}
           anchor="top"
           longitude={popupInfo.long}
           latitude={popupInfo.lat}
-          closeOnClick={false}
+          closeOnClick={true}
+          closeOnDoubleClick={false}
           onClose={() => this.setState({popupInfo: null})}
         >
           <InfoContent info={popupInfo} />
@@ -142,11 +145,8 @@ _renderPopup() {
             onClick = {this.props.mapClick}
             onViewportChange={viewport => this.setState({viewport})}
             >
-
             {this.props.currentUser && this.state.pins}
-
             {this._renderPopup()}
-
         <div style={{position: 'absolute',right:0, bottom: 20, padding: "10px"}}>
           <NavigationControl
           />

@@ -10,6 +10,7 @@ const Login = (props) => {
 
   return (
     <div>
+      <h3>Welcome Back!</h3>
       <h2>LOG IN</h2>
       <hr />
       <form onSubmit={props.handleLogin}>

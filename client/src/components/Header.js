@@ -40,8 +40,11 @@ const Header =(props)=>{
         :
         <>
         <Link to = "/">
+
         <h1> &nbsp; Welcome to Cafe Coven! </h1></Link>
-        <button className ="header-button"  onClick={props.handleLoginButton}>Users: Register or Log In</button>
+        <div className="button-container">
+          <button className ="header-button"  onClick={props.handleLoginButton}>Users: Register or Log In</button>
+        </div>
 
           <Intro />
         </>
