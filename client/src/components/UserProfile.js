@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import '../App.css';
+import CheckBox from './CheckBox'
 // import Map from './components/Map'
 
 // setstate with what's already there
@@ -19,6 +20,7 @@ const UserProfile = (props) => {
             return <></>
           case 'username':
             return <>
+            <div className = "box">
               <label htmlFor={key}>{key}:</label>
               <input
                 required
@@ -27,57 +29,69 @@ const UserProfile = (props) => {
                 value={props.form[key] }
                 onChange={props.handleChange}
               />
+            </div>
             </>
           case 'lat':
-          return <>
-            <label htmlFor={key}>{key}:</label>
-            <input
-              disabled
-              type="number"
-              step="any"
-              name={key}
-              value={props.form[key]}
-              onChange={props.handleChange}
-            />
-            </>
+            return <>
+              <div className = "box">
+                <label htmlFor={key}>{key}:</label>
+                <input
+                  disabled
+                  type="number"
+                  step="any"
+                  name={key}
+                  value={props.form[key]}
+                  onChange={props.handleChange}
+                />
+              </div>
+              </>
             case 'long':
             return <>
-              <label htmlFor={key}>{key}:</label>
-              <input
-                disabled
-                type="number"
-                step="any"
-                name={key}
-                value={props.form[key]}
-                onChange={props.handleChange}
-              />
-            </>
+              <div className = "box">
+                <label htmlFor={key}>{key}:</label>
+                <input
+                  disabled
+                  type="number"
+                  step="any"
+                  name={key}
+                  value={props.form[key]}
+                  onChange={props.handleChange}
+                />
+             </div>
+             </>
+            case 'days':
+              return <CheckBox
+                days = {props.form.days || ''}
+                currentUser = {props.currentUser}
+                handleCheckBoxChange = {props.handleCheckBoxChange}
+                />
         default:
             return <>
-              <label htmlFor={key}>{key}:</label>
-              <input
-                type="text"
-                name={key}
-                value={props.form[key] }
-                onChange={props.handleChange}
-              />
-            </>
+              <div className = "box">
+                <label htmlFor={key}>{key}:</label>
+                <input
+                  type="text"
+                  name={key}
+                  value={props.form[key] }
+                  onChange={props.handleChange}
+                />
+              </div>
+             </>
         }
     });
   }
+
   if (props.currentUser) {
     return (
       <>
-      <button className="mapchange-button"  onClick={props.handleChangeLocation}>CHANGE YOUR LOCATION</button>
+      <button className="mapchange-button"  onClick={props.handleChangeLocation}>CHANGE YOUR LOCATION ON THE MAP</button>
 
-        <h2 className = "profile">Important: Always Check Your Data</h2>
-        <h3 className = "profile">Help WorkHaven help you! The more details you add on your profile <br/> -> the better our database <br /> ->the higher your odds of finding a co-worker near you!<br/>
-        Make sure your LOCATION is accurate. </h3>
+        <h3 className = "profile">Help WorkHaven help you! <br />The more details you add on your profile, the better our database and the higher your odds of finding a co-worker near you!<br/>
+        Make sure EVERY portion of this form is accurate! </h3>
 
-        <div className = "profile"> {userForm()}</div>
+        <div > {userForm()}</div>
 
-        <button  className="profile"  onClick={props.handleSubmit} >Submit</button>
-
+        <button  className="nav-button"  onClick={props.handleSubmit} > Confirm </button>
       </>
     )
   } else {

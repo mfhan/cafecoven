@@ -1,6 +1,8 @@
 import React  from 'react';
 import { Router,  Redirect, Link} from 'react-router-dom';
 // import { withRouter } from 'react-router';
+import { Icon, InlineIcon } from '@iconify/react';
+import coffeeIcon from '@iconify/icons-whh/coffee';
 import '../App.css';
 import Intro from './Intro'
 
@@ -18,28 +20,34 @@ const Header =(props)=>{
   // }
   //user.changedData: true
 
-    return (
-      <header>
-        {props.currentUser
-          ?
-          <div>
-            <Redirect to = {`/edit/${props.currentUser.id}`} />
-            <h3>Hi {props.currentUser && props.currentUser.email}
-            <button  className="nav-button"  onClick={props.handleLogout}>Log Out</button>
-            <Link className="nav-button"   to={`/edit/${props.currentUser.id}`}> Change Profile</Link>
-            </h3>
-          </div>
-          :
-          <>
-          <button className ="nav-button"  onClick={props.handleLoginButton}>Users: Register or Log In</button>
-          <Link to = "/">
-            <h1>Welcome to WorkHaven</h1></Link>
-            <h2>Connect and Cowork with Other Women</h2>
-            <Intro />
-          </>
-        }
-      </header>
-    );
+  return (
+    <header>
+
+
+      {props.currentUser
+        ?
+        <div>
+          <Redirect to = {`/edit/${props.currentUser.id}`} />
+          <h2>Hi {(props.currentUser && props.currentUser.username) ||(props.currentUser && props.currentUser.email) || `friend` } !</h2>
+          <h1><Icon className = 'coffee' icon={coffeeIcon} /> &nbsp; Welcome to Cafe Coven! &nbsp; <Icon className = 'coffee' icon={coffeeIcon} /> </h1>
+            &nbsp;
+            <div className="button-container">
+              <button  className="header-button"  onClick={props.handleLogout}>Log Out</button>
+              <button className="header-button">
+              <Link  to={`/edit/${props.currentUser.id}`}>Back to Your Profile</Link></button>
+            </div>
+        </div>
+        :
+        <>
+        <Link to = "/">
+        <h1> &nbsp; Welcome to Cafe Coven! </h1></Link>
+        <button className ="header-button"  onClick={props.handleLoginButton}>Users: Register or Log In</button>
+
+          <Intro />
+        </>
+      }
+    </header>
+  );
 }
 
 export default Header;

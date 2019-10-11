@@ -14,18 +14,18 @@ const Intro=()=>{
 
   return(
       <div className = "intro">
-        <h2><Icon className = 'coffee' icon={coffeeIcon} />  WHY WorkHaven?  <Icon icon={coffeeIcon} /></h2>
+        <h2><Icon className = 'coffee' icon={coffeeIcon} />   &nbsp;  Connect and Cowork with Other Women &nbsp; <Icon icon={coffeeIcon} /> </h2>
           <h3>IS THIS YOU?</h3>
-            <div className= "row" id = "you">
-            <div className= "column">You do <strong>your best work</strong> in public places: cafeterias, independent coffee shops, hotel lobbies. But sometimes working alone gets tiresome</div>
-            <div className= "column">You are a <strong>freelancer</strong> and would like to <strong>connect</strong> with other women in your industry -- all the while getting some work done</div>
-            <div className= "column">You <strong>LIKE</strong> the idea of writing in a coffee shop -- but you need an <strong>accountability partner</strong> who will keep you productive</div>
+          <div className= "row" >
+            <div className= "column" id = "you">You do <strong>your best work</strong> in public places: cafeterias, independent coffee shops, hotel lobbies. But sometimes working alone gets tiresome</div>
+            <div className= "column" id = "you">You are a <strong>freelancer</strong> and would like to <strong>connect</strong> with other women in your industry -- all the while getting some work done</div>
+            <div className= "column" id = "you">You <b>LIKE</b> the idea of writing in a coffee shop -- but you need an <strong>accountability partner</strong> who will keep you productive</div>
             </div>
-        <h3>HOW IT WORKS: SAFE, EASY, ACCURATE</h3>
-          <div className= "row" id="desc">
-          <div className= "column"><Icon  icon={clipboardPencil} />SIGN UP, FILL THE FORM & INDICATE YOUR AVAILABLE DAYS </div>
-          <div className= "column"><Icon  icon={mapMarkedAlt} /> GET A MAP OF POTENTIAL MATCHES</div>
-          <div className= "column"><Icon icon={okSign} />GET IN TOUCH WITH YOUR MATCH AND GET WORKING!</div>
+        <h3> HOW IT WORKS: SAFE, EASY, ACCURATE </h3>
+          <div className= "row" >
+          <div className= "column" id="desc"><Icon  icon={clipboardPencil} />SIGN UP, FILL THE FORM & INDICATE YOUR AVAILABLE DAYS </div>
+          <div className= "column" id="desc"><Icon  icon={mapMarkedAlt} /> GET A MAP OF POTENTIAL MATCHES</div>
+          <div className= "column" id="desc"><Icon icon={okSign} />GET IN TOUCH WITH YOUR MATCH AND GET WORKING!</div>
           </div>
 
         <h3>TESTIMONIALS</h3>

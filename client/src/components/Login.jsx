@@ -14,20 +14,20 @@ const Login = (props) => {
       <hr />
       <form onSubmit={props.handleLogin}>
 
-        <input
+        <input className = "login"
         name="email"
         type="text"
         value={email}
         onChange={props.authHandleChange} />
 
-        <input
+        <input className = "login"
         name="password"
         type="password"
         value={password}
         onChange={props.authHandleChange} />
 
-        <button  >Log In</button>
-        <Link to="/register">Register</Link>
+        <button  className = "login">Log In</button>
+        <button  className = "login"><Link to="/register"> or Register</Link></button>
       </form>
     </div>
   );

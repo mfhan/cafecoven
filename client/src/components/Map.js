@@ -3,6 +3,7 @@ import {render} from 'react-dom';
 import MapGL, {Marker, Popup, NavigationControl } from 'react-map-gl';
 import InfoContent from './InfoContent'
 import Pin from './Pin'
+import UserPin from './UserPin'
 import ControlPanel from './ControlPanel';
 import '../App.css';
 //import 'mapbox-gl/dist/mapbox-gl.css';
@@ -24,17 +25,39 @@ class Map extends Component {
     users: this.props.users,
     currentUser: this.props.currentUser,
     viewport: {
-      latitude: 40.753345,
-      longitude: -73.9841719,
+      latitude: this.props.currentUser ? this.props.currentUser.lat : 40.753345,
+      longitude: this.props.currentUser ? this.props.currentUser.long : -73.9841719,
       zoom:14,
       minZoom: 10,
       maxZoom: 20,
       bearing: 0,
       pitch: 0
     },
-
+    userpin:[],
+    pins: [],
     popupInfo: null
   };
+}
+
+componentDidUpdate(prevProps) {
+  if (prevProps.currentUser !== this.props.currentUser ) {
+    this.setState(prevState => ({
+      viewport: {
+        ...prevState.viewport,
+        latitude: this.props.currentUser.lat,
+        longitude: this.props.currentUser.long,
+      }
+    }))
+  }
+  if (this.props.users.length !== 0 && this.props.currentUser !== null) {
+    if (this.props.form !== prevProps.form){
+      this.mapMarkers();
+    }
+  }
+  if ((this.props.users.length !== prevProps.users.length) && (this.props.currentUser !== prevProps.currentUser)) {
+      this.mapMarkers();
+  }
+
 }
 
 updateViewport=(viewport)=>{
@@ -67,6 +90,10 @@ _renderPopup() {
   //     </Marker>
   //   );
   // };
+  // componentDidMount() {
+  //
+  //   this.mapMarkers();
+  // }
 
   mapMarkers = () => {
     const userMarkers = this.props.users.filter(user=> user.id !== this.props.currentUser.id && user.lat && user.long).map(user=> (
@@ -78,7 +105,7 @@ _renderPopup() {
          offsetTop={-10}
         >
         <div> {user.username} </div>
-        <Pin fill='#ffbf00'
+        <Pin
         onClick={() =>this.setState({popupInfo:user})} />
       </Marker>
 
@@ -92,22 +119,20 @@ _renderPopup() {
          offsetTop={-10}
         >
         <div> {user.username} </div>
-        <Pin fill='#d00'
+        <UserPin
         onClick={() =>this.setState({popupInfo:user})} />
       </Marker>
 
     ))
-    return [userMarkers, currentUserMarker]
+    this.setState({
+      pins: [userMarkers, currentUserMarker]
+    })
   }
 
   render() {
-
     const {viewport} = this.state;
     const users = this.props.users;
     const currentUser= this.props.currentUser;
-
-    console.log("props users from Map.js", this.props.users)
-    console.log("currentUser from Map.js", this.props.currentUser)
 
     return (
       <div >
@@ -121,7 +146,7 @@ _renderPopup() {
             onViewportChange={viewport => this.setState({viewport})}
             >
 
-            {this.props.currentUser && this.mapMarkers()}
+            {this.props.currentUser && this.state.pins}
 
             {this._renderPopup()}
 
@@ -129,10 +154,6 @@ _renderPopup() {
           <NavigationControl
           />
         </div>
-
-
-        <ControlPanel
-          button={this.props.containerComponent} />
 
         </MapGL >
       </div>
@@ -142,7 +163,9 @@ _renderPopup() {
 
 export default Map;
 
-  //
+  //<ControlPanel
+  //button={this.props.containerComponent} />
+
   // _renderCityMarker = (artist, index) => {
   //     return (
   //       <Marker key={`marker-${index}`} longitude={artist.long} latitude={artist.lat}>

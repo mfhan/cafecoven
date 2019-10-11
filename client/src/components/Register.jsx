@@ -10,20 +10,20 @@ const Register=(props)=>{
   return(
     <div>
       <h2>Register</h2>
-      <form onSubmit={props.handleRegister}>
-        <input
+      <form  onSubmit={props.handleRegister}>
+        <input className = "login"
         type="text"
         name = 'email'
         value={email}
         onChange={props.authHandleChange}
         />
-        <input
+        <input className = "login"
         type="password"
         name = "password"
         value={password}
         onChange={props.authHandleChange}
         />
-        <button>Register</button>
+        <button className = "login">Register</button>
       </form>
     </div>
   )

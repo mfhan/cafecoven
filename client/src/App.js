@@ -5,14 +5,11 @@ import Login from './components/Login'
 import Register from './components/Register'
 import Header from './components/Header'
 import Intro from './components/Intro'
-import NewHeader from './components/NewHeader'
 import About from './components/About'
 import Footer from './components/Footer'
 import Map from './components/Map'
-//import NewMap from './components/NewMap'
 import UserProfile  from './components/UserProfile'
-// import MatchList  from './components/MatchList'
-// import SingleMatch  from './components/SingleMatch'
+//import Filter from './components/Filter'
 import './App.css';
 import {
   loginUser, registerUser, verifyUser, updateUser, showMatches
@@ -31,7 +28,8 @@ class App extends Component {
         phone: '',
         lat: null,
         long: null,
-        intro: ''
+        intro: '',
+        days: ''
       },
       changedData: false,
       mapLat:null,
@@ -89,6 +87,7 @@ class App extends Component {
       })
       this.setFormData(currentUser)
       this.setState({ currentUser })
+      this.props.history.push(`/edit/${currentUser.id}`)
     })
   }
 
@@ -107,54 +106,8 @@ class App extends Component {
   this.props.history.push('/')
   }
 
-////////////////////// MAP & USER DATA CHANGES ////////////////////////
-  setFormData = (user)=>{
-    this.setState(prevState => ({
-      form: {
-        ...prevState.form,
-        username: user.username,
-        phone:user.phone,
-        intro: user.intro
-       }
-    }))
-  }
+////////////////////// SET USER DATA FORM ////////////////////////
 
-  handleFormChange = (e)=> {
-        let {name, value} = e.target;
-        this.setState(prevState => ({
-          form: {
-            ...prevState.form,
-            [name]: value
-          }
-        }))
-      }
-
-    handleUserFormSubmit = async (e) => {
-      e.preventDefault();
-      if (this.state.form.lat && this.state.form.long) {
-        const data = this.state.form;
-        const id = this.state.currentUser.id;
-        const updatedUser = await updateUser(data, id);
-        console.log(updatedUser)
-        // this.setState(prevState =>({
-        //   changingLocation: false
-        // }))
-        // const users = await this.getUsers()
-        this.setState(prevState => ({
-          redirect_to_users:true,
-          users: prevState.users.map(user => user.id=== updatedUser.id ? updatedUser : user )
-        }))
-      }
-      // this.props.history.push('/users')
-    }
-
-
-    handleChangeLocation =(e)=>{
-      e.preventDefault()
-      this.setState(prevState =>({
-        changingLocation: true
-      }))
-    }
 
     setPosition=()=>{
       const watchId = navigator.geolocation.getCurrentPosition((position)=> {
@@ -170,6 +123,33 @@ class App extends Component {
       // console.log(watchId)
     }
 
+
+
+  setFormData = (user)=>{
+    this.setState(prevState => ({
+      form: {
+        ...prevState.form,
+        username: user.username,
+        phone:user.phone,
+        intro: user.intro,
+        lat: user.lat,
+        long: user.long,
+        days: user.days
+       }
+    }))
+  }
+
+
+////////////////////// MAP DATA CHANGES ////////////////////////
+
+    handleChangeLocation =(e)=>{
+      e.preventDefault()
+      this.setState(prevState =>({
+        changingLocation: true
+      }))
+    }
+
+
     mapClick =(map, e)=> {
         console.log('this is mapClick', map)
         this.setState(prevState => ({
@@ -180,6 +160,99 @@ class App extends Component {
             }
           }))
     }
+
+    ////////////////////// FORM DATA CHANGES ////////////////////////
+
+      handleFormChange = (e)=> {
+            let {name, value} = e.target;
+            this.setState(prevState => ({
+              form: {
+                ...prevState.form,
+                [name]: value
+              }
+            }))
+          }
+
+//onChange={props.handleChange}
+//function handleClick(cb) {
+//   display("Clicked, new value = " + cb.checked);
+// }
+
+////////////////////// DAY-OF-WEEK CHANGES ////////////////////////
+
+      handleCheckBoxChange =(e)=>{
+        // assign userDays to a variable
+        let userDays = this.state.form.days || '';
+        console.log('userDays from start of app.js', userDays)
+        const day = e.target.name;
+        console.log('day from handleCheckBoxChange in app', day)
+        // if this variable contains the day we're looking for
+        if (userDays.includes(day)){
+          // another implementation: userDays = userDays.replace(day, '')
+          userDays = userDays.split("").filter((el)=>{
+            return el !== day;
+          }).join('');
+          // remove it from the variable
+        } else {
+          userDays += day
+          // add it to the variable
+        }
+        this.setState(prevState => ({
+          ...prevState,
+          form: {
+            ...prevState.form,
+            days: userDays
+          }
+        }));
+        // setState of days to new variable
+      }
+
+        handleUserFormSubmit = async (e) => {
+          e.preventDefault();
+          if (this.state.form.lat && this.state.form.long) {
+            const data = this.state.form;
+            const id = this.state.currentUser.id;
+            const updatedUser = await updateUser(data, id);
+            console.log(updatedUser)
+            // this.setState(prevState =>({
+            //   changingLocation: false
+            // }))
+            // const users = await this.getUsers()
+            this.setState(prevState => ({
+              redirect_to_users:true,
+              users: prevState.users.map(user => user.id=== updatedUser.id ? updatedUser : user )
+            }))
+            this.props.history.push(`/users`)
+          }
+          // this.props.history.push('/users')
+        }
+
+          // handleFilter =(e)=>{
+          //   // assign userDays to a variable
+          //   let userDays = this.state.form.days ;
+          //   const day = e.target.name;
+          //   // if this variable contains the day we're looking for
+          //   if (userDays.includes(day)){
+          //     // another implementation: userDays = userDays.replace(day, '')
+          //     userDays = userDays.split("").filter((el)=>{
+          //       return el !== day;
+          //     }).join('');
+          //     // remove it from the variable
+          //   } else {
+          //     userDays += day
+          //     // add it to the variable
+          //   }
+          //   this.setState(prevState => ({
+          //     ...prevState,
+          //     form: {
+          //       ...prevState.form,
+          //       days: userDays
+          //     }
+          //   }));
+          //   // setState of days to new variable
+          // }
+
+
 
     getUsers = async () => {
 
@@ -192,7 +265,6 @@ class App extends Component {
   componentDidMount(){
     this.handleVerify()
     this.getUsers()
-    this.setPosition()
     }
 
   render(){
@@ -244,7 +316,6 @@ class App extends Component {
               <>
                 <Header
                   currentUser = {this.state.currentUser}
-                  handleLoginButton = {this.handleLoginButton}
                   handleLogout = {this.handleLogout}
                 />
                 <Map
@@ -261,7 +332,8 @@ class App extends Component {
                   form={this.state.form}
                   handleChange={this.handleFormChange}
                   handleChangeLocation={this.handleChangeLocation}
-                  handleSubmit={this.handleUserFormSubmit} />
+                  handleSubmit={this.handleUserFormSubmit}
+                  handleCheckBoxChange={this.handleCheckBoxChange} />
                 </>)}
               />
 
@@ -269,7 +341,6 @@ class App extends Component {
               <>
               <Header
                 currentUser = {this.state.currentUser}
-                handleLoginButton = {this.handleLoginButton}
                 handleLogout = {this.handleLogout}
               />
                <Map
@@ -279,6 +350,7 @@ class App extends Component {
                  currentUser={this.state.currentUser}
                  form={this.state.form}
                />
+
             </> )}
           />
 
@@ -293,6 +365,15 @@ class App extends Component {
 }
 
 export default withRouter(App);
+
+
+//
+// <Filter
+//   users={this.state.users}
+//   mapClick={this.mapClick}
+//   currentUser={this.state.currentUser}
+//   form={this.state.form}
+// />
 
 // getUsers = async () => {
 //   const users = await showMatches()
