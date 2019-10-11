@@ -84,14 +84,14 @@ const UserProfile = (props) => {
   if (props.currentUser) {
     return (
       <>
-      <button className="mapchange-button"  onClick={props.handleChangeLocation}>CHANGE YOUR LOCATION ON THE MAP</button>
+      <button className="mapchange-button"  onClick={props.handleChangeLocation}>STEP 1: CHECK OR CHANGE YOUR PIN ON THE MAP</button>
 
-        <h3 className = "profile">Help WorkHaven help you! <br />The more details you add on your profile, the better our database and the higher your odds of finding a co-worker near you!<br/>
+        <h3 className = "profile">STEP 2: The more detailed your profile, the better our database and the higher your odds of finding a co-worker near you<br/>
         Make sure EVERY portion of this form is accurate! </h3>
 
         <div > {userForm()}</div>
 
-        <button  className="nav-button"  onClick={props.handleSubmit} > Confirm </button>
+        <button  className="nav-button"  onClick={props.handleSubmit} >STEP3: Confirm </button>
       </>
     )
   } else {

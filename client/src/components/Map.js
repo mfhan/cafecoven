@@ -33,8 +33,6 @@ class Map extends Component {
       bearing: 0,
       pitch: 0
     },
-    userpin:[],
-    pins: [],
     popupInfo: null
   };
 }
@@ -57,7 +55,6 @@ componentDidUpdate(prevProps) {
   if ((this.props.users.length !== prevProps.users.length) && (this.props.currentUser !== prevProps.currentUser)) {
       this.mapMarkers();
   }
-
 }
 
 updateViewport=(viewport)=>{
@@ -162,6 +159,27 @@ _renderPopup() {
 }
 
 export default Map;
+
+
+// componentDidUpdate(prevProps) {
+//   if (prevProps.currentUser !== this.props.currentUser ) {
+//     this.setState(prevState => ({
+//       viewport: {
+//         ...prevState.viewport,
+//         latitude: this.props.currentUser.lat,
+//         longitude: this.props.currentUser.long,
+//       }
+//     }))
+//   }
+//   if (this.props.users.length !== 0 && this.props.currentUser !== null) {
+//     if (this.props.form !== prevProps.form){
+//       this.mapMarkers();
+//     }
+//   }
+//   if ((this.props.users.length !== prevProps.users.length) && (this.props.currentUser !== prevProps.currentUser)) {
+//       this.mapMarkers();
+//   }
+// }
 
   //<ControlPanel
   //button={this.props.containerComponent} />

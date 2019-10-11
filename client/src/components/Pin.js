@@ -23,7 +23,7 @@ export default class Pin extends PureComponent {
     return (
       <Icon
         icon={coffeeIcon}
-        color = "#ffbf00"
+        color ='#ffbf00'
         height={size}
         viewBox="0 0 24 24"
         onClick={onClick}

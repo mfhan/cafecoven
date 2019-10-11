@@ -2,10 +2,12 @@
   font-family: "Merriwether", sans-serif;
 }
 .App {
-  background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.4) 0%, rgba(235, 237, 238, 0.4) 100%), url("./assets/wood_def.jpg");
+  background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.4) 0%, rgba(235, 237, 238, 0.4) 100%), url("./assets/chalk-texture.jpg");
+  /* background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.4) 0%, rgba(235, 237, 238, 0.4) 100%), url("./assets/chalk.jpg");
+  background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.4) 0%, rgba(235, 237, 238, 0.4) 100%), url("./assets/wood_def.jpg"); */
   /* background-color: rgb(255,244,146); */
   border: 1px solid grey;
-  font-size: 18px;
+  font-size: 20px;
   margin: 5px;
   display: flex;
   flex-direction: column;
@@ -25,8 +27,8 @@
 
 
 svg {
-  height:30px;
-  width: 30px;
+  height:40px;
+  width: 40px;
   padding-bottom: 20px;
   margin: 0 auto;
   /* text-align: center;
@@ -36,7 +38,7 @@ svg {
 }
 
 header {
-  background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.4) 0%, rgba(235, 237, 238, 0.4) 100%), url("./assets/wood_def.jpg");
+  /* background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.4) 0%, rgba(235, 237, 238, 0.4) 100%), url("./assets/wood_def.jpg"); */
   text-decoration: none;
   text-align: center;
   margin-bottom: 10px;
@@ -149,7 +151,7 @@ Icon  .coffee{
 
 .post-login {
   /* flex-grow: 1; */
-  background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.4) 0%, rgba(235, 237, 238, 0.4) 100%), url("./assets/wood_def.jpg");
+  background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.4) 0%, rgba(235, 237, 238, 0.4) 100%), url("./assets/chalk-texture.jpg");
   /* background-color: #70bf40; */
   padding: 2px 10px 2px 20px;
   display: flex;
@@ -179,17 +181,20 @@ Icon  .coffee{
   text-align: left;
   margin: 2px, 15px, 2px, 15px ;
   padding: 5px, 15px, 2px, 15px;
+  text-transform: uppercase;
 }
 
 Checkbox{
   text-align: left;
   margin: 2px, 10px;
   padding: 5px, 10px, 15px, 10px;
+  text-transform: uppercase;
 }
 
 Checkbox  input {
   max-width: 10px;
   margin: 2px, 15px, 2px, 15px ;
+  text-transform: uppercase;
 }
 
 
@@ -239,7 +244,7 @@ h1{
   background: #fff;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  padding: 10px 10px 15px;
+  padding: 5px 10px;
   pointer-events: auto;
 }
 
@@ -248,18 +253,32 @@ h1{
 } */
 
 .info-window {
-  width: 300px;
-  height: 150px;
+  background-image: linear-gradient(120deg, rgba(253, 251, 251, 0.8) 0%, rgba(235, 237, 238, 0.8) 100%), url('./assets/drawings.jpg');
+  /* width: 350px;
+  height: 150px; */
   border-radius: 2px;
-  border: solid grey;
-  padding: 1px;
-  /* box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1); */
-}
-.info-window p {
-  font-size: 14px;
-  color: green;
+  border: dotted lightgrey 2px;
+  padding: 5px, 5px;
+  font-size: 16px;
 }
 
+.info-window name {
+  font-size: 18px;
+  color: black;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.info-window p {
+  color: black;
+  padding: 0px, 10px, 5px, 10px;
+}
+
+.info-window Link, a, href {
+  color: black;
+  font-size: 16px;
+  text-decoration: none;
+}
 
 /* Global buttons */
 .nav-button {
@@ -282,8 +301,8 @@ h1{
     margin: 10px, 5px,10px,5px;
 }
 
-Link, a {
-  font-size: 18px;
+Link, a, href {
+  font-size: 20px;
   padding: 4px, 4px,4px,4px;
   text-decoration: none;
 }
