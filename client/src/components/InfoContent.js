@@ -37,7 +37,7 @@ export default class InfoContent extends PureComponent {
       <div className="info-window">
           <name className="info-window">{displayName}</name>
           <p>Available on: {daysList}</p>
-          <p ><a href= "mailto:{displayEmail} ?subject=Mail from WorkHaven&body=Body-goes-here" target="_blank" rel="noopener noreferrer">Contact: {displayEmail}</a></p>
+          <a href= "mailto:{displayEmail} ?subject=Mail from WorkHaven&body=Body-goes-here" target="_blank" rel="noopener noreferrer">Contact: {displayEmail}</a>
           <p >What she's working on: {displayIntro}</p>
       </div>
     );

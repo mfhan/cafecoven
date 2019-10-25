@@ -7,6 +7,7 @@ import Pin from './Pin'
 import UserPin from './UserPin'
 import ControlPanel from './ControlPanel';
 import '../App.css';
+//import Filter from './Filter'
 //import 'mapbox-gl/dist/mapbox-gl.css';
 const TOKEN = 'pk.eyJ1IjoicGFyaXNueSIsImEiOiJjazBsY2o2NWMwYzB4M2RwbXA2djMxajhvIn0.aZA45UapwyeCfUBOA-N9Vw';
 
@@ -17,6 +18,8 @@ const navStyle = {
   padding: '10px'
 };
 
+// add usersOfDay: this.props.usersOfDay    to this.state = {
+//
 
 class Map extends Component {
   constructor(props){
@@ -24,6 +27,7 @@ class Map extends Component {
 
   this.state = {
     users: this.props.users,
+    usersOfDay: this.props.usersOfDay,
     currentUser: this.props.currentUser,
     viewport: {
       latitude: this.props.currentUser ? this.props.currentUser.lat : 40.753345,
@@ -94,6 +98,24 @@ _renderPopup() {
   //
   //   this.mapMarkers();
   // }
+
+//below: add const usersOfDayMarkers = this.props.usersOfDay.map(usersOfDay =>(
+// <Marker
+//    key = {usersOfDay.email}
+//    latitude = {usersOfDay.lat}
+//    longitude = {usersOfDay.long}
+//    offsetLeft={-20}
+//    offsetTop={-10}
+//   >
+//   <div> {usersOfDay.username} </div>
+//   <Pin
+//   onClick={() =>this.setState({popupInfo:usersOfDay})} />
+// </Marker>
+//))
+//this.setState({
+//  pins: [userMarkers, currentUserMarker, XXXXXX]
+//})
+
 
   mapMarkers = () => {
     const userMarkers = this.props.users.filter(user=> user.id !== this.props.currentUser.id && user.lat && user.long).map(user=> (

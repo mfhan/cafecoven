@@ -1,56 +1,78 @@
 import React, {Component}  from 'react';
+
 import '../App.css';
 
+  // create a div that holds checkboxes
+  // it should have seven checkboxes for the days of the week
+  // it passes users and their 'days' property
+  // once clicked the checkbox should display every user whose 'days' property INCLUDES the corresponding letter
+
+//write a function handleFilterChange
+//use first part of handleCheckBoxChange to extract day of the week
+//use getUsers to have a list of all Users
+//
+//then loop through the list:
+//for (let i =0; i< users.length; i++){
+//   let usersOfDay = []
+//   let thisUser = (users[i])
+//   if thisUser.days.includes('day'){
+//     usersOfDay.push(thisUser)
+//   }
+//  return usersOfDay
+// }
 
 
-class Filter extends Component {
-  constructor(props){
-    super(props)
+// handleFilterChange =(e)=>{
 
-  this.state = {
-    users: this.props.users,
-    currentUser: this.props.currentUser,
-    viewport: {
-      latitude: this.props.currentUser ? this.props.currentUser.lat : 40.753345,
-      longitude: this.props.currentUser ? this.props.currentUser.long : -73.9841719,
-      zoom:14,
-      minZoom: 10,
-      maxZoom: 20,
-      bearing: 0,
-      pitch: 0
-    },
-    userpin:[],
-    pins: [],
-    popupInfo: null
-  };
-}
+//};
 
 
-  const users
-  const daysOfTheWeek = 'mtwrfsu';
+
+const Filter = (props) => {
+  //const userDays = props.days;
+  // const daysOfTheWeek = 'mtwrfsu';
+  const daysOfTheWeek = ["mon", "tue", "wed", "thur", "fri", "sat", "sun"];
   console.log(userDays);
-//<input type="checkbox" onclick="onClickHandler()" onchange="onChangeHandler()" />
-
-  const schedule = daysOfTheWeek.split("").map((day) => {
-    return <>
-      <label htmlFor={day}>{day}:</label>
-      <input
-        type="checkbox"
-        name={day}
-        checked={userDays.split("").includes(day)}
-        onChange={props.handleCheckBoxChange}
-      />
-    </>
+  //<input type="checkbox" onclick="onClickHandler()" onchange="onChangeHandler()" />
+    const filterBox = daysOfTheWeek.map((day) => {
+      if (day === 'thur' ){
+        return <>
+            <label htmlFor={day}>{day}:</label>
+            <input max-width= "10px"
+              type="checkbox"
+              name={day.charAt(3) }
+              checked={userDays.includes(day.charAt(3)) || ""}
+              onChange={props.handleFilterChange}
+            />
+          </>
+      } else if ( day === 'sun' ){
+          return <>
+              <label htmlFor={day}>{day}:</label>
+              <input max-width= "10px"
+                type="checkbox"
+                name={day.charAt(1) }
+                checked={userDays.includes(day.charAt(1)) || ""}
+                onChange={props.handleFilterChange}
+              />
+            </>
+        } else {
+        return <>
+            <label htmlFor={day}>{day}:</label>
+            <input max-width= "10px"
+              type="checkbox"
+              name={day.charAt(0) }
+              checked={userDays.includes(day.charAt(0)) || ""}
+              onChange={props.handleFilterChange}
+            />
+          </>
+      }
   })
   return (
-    <>
-      {schedule}
-    </>
+    <div className = "check-box">
+    <h3>Click on a day to see who is available</h3>
+      {filterBox}
+    </div>
   )
 
-  // create a div that holds checkboxes
-  // it should have seven checkboxes, according to days of the week
-  // each checkbox should be selected if the days are being passed down
-  // once clicked the checkbox should either remove itself or add itself
 }
-export default CheckBox;
+export default Filter;

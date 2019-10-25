@@ -223,32 +223,6 @@ class App extends Component {
           // this.props.history.push('/users')
         }
 
-          // handleFilter =(e)=>{
-          //   // assign userDays to a variable
-          //   let userDays = this.state.form.days ;
-          //   const day = e.target.name;
-          //   // if this variable contains the day we're looking for
-          //   if (userDays.includes(day)){
-          //     // another implementation: userDays = userDays.replace(day, '')
-          //     userDays = userDays.split("").filter((el)=>{
-          //       return el !== day;
-          //     }).join('');
-          //     // remove it from the variable
-          //   } else {
-          //     userDays += day
-          //     // add it to the variable
-          //   }
-          //   this.setState(prevState => ({
-          //     ...prevState,
-          //     form: {
-          //       ...prevState.form,
-          //       days: userDays
-          //     }
-          //   }));
-          //   // setState of days to new variable
-          // }
-
-
 
     getUsers = async () => {
 
@@ -363,10 +337,11 @@ class App extends Component {
 export default withRouter(App);
 
 
-//
+//UNDER /users
+
 // <Filter
 //   users={this.state.users}
-//   mapClick={this.mapClick}
+//   handleFilterChange={this.handleFilterChange}
 //   currentUser={this.state.currentUser}
 //   form={this.state.form}
 // />
