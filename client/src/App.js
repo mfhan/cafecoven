@@ -8,6 +8,7 @@ import Intro from './components/Intro'
 import About from './components/About'
 import Footer from './components/Footer'
 import Map from './components/Map'
+import InfoContent from './components/Info'
 import UserProfile  from './components/UserProfile'
 //import Filter from './components/Filter'
 import './App.css';
@@ -225,15 +226,14 @@ class App extends Component {
 
 
     getUsers = async () => {
-
       const users = await showMatches()
       console.log("users from getUsers", users)
       this.setState({users})
     }
-
+//    this.handleVerify()
 ///////////////////////////////////////////////////////////////////
   componentDidMount(){
-    this.handleVerify()
+    this.setPosition()
     this.getUsers()
     }
 

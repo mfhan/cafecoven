@@ -1,7 +1,16 @@
 const axios = require('axios');
 
-const BASE_URL = 'http://localhost:3000';
+//const BASE_URL = 'http://localhost:3000';
 //const BASE_URL = 'https://cafecoven-rails.herokuapp.com/'
+
+const BASE_URL = process.env.NODE_ENV === 'development'
+ ? 'http://localhost:3000'
+ : 'https://cafecoven-rails.herokuapp.com/';
+
+// process.env.NODE_ENV === 'development'
+//  ? const BASE_URL = 'http://localhost:3000'
+//  : const BASE_URL = 'https://cafecoven-rails.herokuapp.com/';
+
 
 const api = axios.create({
   baseURL: BASE_URL
@@ -19,7 +28,7 @@ export const registerUser = async (registerData) => {
   const resp = await api.post('/users', { user: registerData });
   localStorage.setItem('authToken', resp.data.token);
   api.defaults.headers.common.authorization = `Bearer ${resp.data.token}`;
-  console.log("resp.data.user from REGISTER", resp.data.user) 
+  console.log("resp.data.user from REGISTER", resp.data.user)
   return resp.data.user;
 }
 

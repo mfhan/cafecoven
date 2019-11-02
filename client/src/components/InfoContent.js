@@ -36,9 +36,10 @@ export default class InfoContent extends PureComponent {
     return (
       <div className="info-window">
           <name className="info-window">{displayName}</name>
+          <p >What she's working on: `${info.intro}`</p>
           <p>Available on: {daysList}</p>
           <a href= "mailto:{displayEmail} ?subject=Mail from WorkHaven&body=Body-goes-here" target="_blank" rel="noopener noreferrer">Contact: {displayEmail}</a>
-          <p >What she's working on: {displayIntro}</p>
+
       </div>
     );
   }
