@@ -22,17 +22,25 @@ import '../App.css';
 // }
 
 
-// handleFilterChange =(e)=>{
+handleFilterChange =(e)=>{
+  let myDay = '';
+  const day = e.target.name;
 
-//};
+  const findSame = (ourDay, userDays) => {
+    console.log(userDays)
+    return userDays.split('').includes(ourDay);
+  }
 
+  const findMatch = (day, users) => {
+    return users.filter((user) => findSame(day, user.days));
+  }
+  console.log(findMatch(myDay, people));
+}
 
 
 const Filter = (props) => {
-  //const userDays = props.days;
-  // const daysOfTheWeek = 'mtwrfsu';
+
   const daysOfTheWeek = ["mon", "tue", "wed", "thur", "fri", "sat", "sun"];
-  console.log(userDays);
   //<input type="checkbox" onclick="onClickHandler()" onchange="onChangeHandler()" />
     const filterBox = daysOfTheWeek.map((day) => {
       if (day === 'thur' ){

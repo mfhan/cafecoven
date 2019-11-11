@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   def update
 p user_params
-p 'hhhhhhhhhhhhhhhhhhhhhhiiiii', @user
+p 'hhhhhhhhhhhhhhhhhhhhhhiiiii from update in users_controller', @user
     if @user.update(user_params)
       render json: @user
     else
