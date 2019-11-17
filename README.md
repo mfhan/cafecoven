@@ -1,29 +1,28 @@
 
 # CafeCoven  
 
-## an app to help women cowork and network!
+## An App to Help Women Cowork and Connect!
 
 You are a freelancer, a writer, or just a coffee lover. By choice or necessity, you frequently do your work in cafes and other public places, but there are drawbacks: you have to constantly keep an eye on your belongings, and sometimes you struggle to find and keep your focus. How about finding an accountability partner? Imagine combining the functionality of Meetup with the ease of Yelp -- sign up, click on your location and availability, and see who else is looking for a coworking partner!
 
 ### Project Links
 - github: [https://github.com/mfhan/cafecoven](https://github.com/mfhan/cafecoven)
-- [deployment]()
+- [deployment: TBD](http://cafecoven.surge.sh)
+- [Medium article on my tribulations] (https://medium.com/p/e19789537c37/)
 
 
 ## User Stories  
 
--- Amy is a freelance book reviewer who does her best work in public places: Whole Foods cafeteria, independent coffee shops, hotel lobbies. But she dreads the moment she'll have to ask a stranger to watch her computer while she's in the bathroom. She would love to have another woman hold down the fort.
+-- AMY is a freelance book reviewer who does her best work in public places: Whole Foods cafeteria, independent coffee shops, hotel lobbies. But she dreads the moment she'll have to ask a stranger to watch her computer while she's in the bathroom. She would love to have another woman hold down the fort.
 
--- Liz works remotely and would like to connect with other women in the same industry. She's been going to Meetups but those formats are more conducive to tech talks and company pitches. She would like to network on a more individual basis.
+-- LIZ works remotely and would like to connect with other women in the same industry. She's been going to Meetups but those formats are more conducive to tech talks and company pitches. She would like to network on a more individual basis.
 
--- Kate is a novelist who likes the idea of writing in a coffee shop -- but more often than not she ends up reading BuzzFeed for 4 hours straight! She needs an accountability partner who will keep her productive.
+-- KATE is a novelist who likes the idea of writing in a coffee shop -- but more often than not she ends up reading BuzzFeed for 4 hours straight! She needs an accountability partner who will keep her productive.
 
 
 
 ## Wireframes
 
-###  ERD:  
-<img src="https://docs.google.com/drawings/d/e/2PACX-1vTqIfVkO0_zoa4RCK6lUvvAeBcZ7-DNiPvSBCDwtK7h_CmYCUJV4b0x4sTgvoT9_4yI6PGSRp0BPl-v/pub?w=960&amp;h=720">
 
 ### App Home:  
  <img src="https://docs.google.com/drawings/d/e/2PACX-1vSKruZ0yIwUlwq-N6ehmdvsPyDMxYUsDaHLUZzzDtzQmU09BpqWUa1Z1RK3YUMk2o2PO3_MV2TU01TO/pub?w=2193&amp;h=1072">
@@ -89,9 +88,9 @@ You are a freelancer, a writer, or just a coffee lover. By choice or necessity, 
 
 | Component | Priority | Estimated Time | Time Invested | Actual Time |
 | --- | :---: |  :---: | :---: | :---: |
-| Working with REACT MAP GL API | H | 8hrs| -- | -- |
-| Adding radius logic to MAP  | HH | 4hrs| -- | -- |
-| Working with date filter logic  | H | 4hrs| -- | -- |
+| Working with REACT MAP GL API | H | 8hrs| -- | 10hrs |
+| Adding radius logic to MAP  | HH | 4hrs| -- | -- | SCRAPPED
+| Working with date filter logic  | H | 4hrs| -- | 12hrs |
 | Header with log-in | M | 6hrs | --   | --  | -- |
 | Home page styling | H  | 6hrs | --   | --  | -- |
 | Total | H | -- | -- | -- |
@@ -102,12 +101,8 @@ You are a freelancer, a writer, or just a coffee lover. By choice or necessity, 
  -- React Hooks  
  -- Rails
  -- PostgresQL  
- -- Calendly API  
- --(possibly) Yelp or Foursquare API (I already have api keys)  
+ -- Uber's Mapbox GL  
 
-## Code Snippet
 
-TBD
 
-## Issues and Resolutions
- TBD
+ 
